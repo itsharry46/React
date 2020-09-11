@@ -1,31 +1,29 @@
 import React from 'react';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+import Service from './Service';
+import Navbar from './Navbar';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import './index.css';
+import Footer from './Footer';
 
-function App(){
-    let currtime = new Date().toLocaleTimeString();
-    let greeting;
-    const cssstyle = {} ;
-    if (currtime >= 1 && currtime <=7)
-    {
-        greeting = 'Good Monrning';
-        cssstyle.color = 'green';
-    }
-    else if (currtime >=8 && currtime <=18)
-    {
-        greeting = 'Good Afternoon';
-        cssstyle.color = 'orange';
-    }
-    else
-    {
-        greeting = 'Good Evening';
-        cssstyle.color = 'black';
-    }
-    
-    return (
+const App = () => {
+  return(
     <>
-        <div>
-            <h1>Hello World, <span style = {cssstyle}>{greeting}</span></h1>
-        </div>
-    </>);
-}
+      <Navbar/>
+      <Switch> 
+        <Route excat path='/about' component={About}/>
+        <Route excat path='/service' component={Service}/>
+        <Route excat path='/contact' component={Contact}/>
+        <Route path='/' component={Home}/>
+        <Redirect to ="/" />
+      </Switch>
+      <Footer/>
+    </>
+  );
+};
 
 export default App;
